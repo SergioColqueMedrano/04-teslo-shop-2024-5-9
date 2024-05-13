@@ -1,4 +1,4 @@
-import { QuantitySelector, Title } from "@/components";
+import { Title } from "@/components";
 import { initialData } from "@/seed/seed";
 import Link from "next/link";
 import Image from "next/image";
@@ -82,6 +82,13 @@ export default function CheckoutPage() {
               </div>
                   
               <div className="mt-5 mb-1 w-full">
+                  <p className="mb-5">
+                    <span className="text-xs">
+                      Al hacer clic en "Colocar orden", aceptas nuestros <a href="#" className="underline">términos</a>
+                    </span>
+
+                  </p>
+
                   <Link 
                   className="flex btn-primary justify-center"
                   href="/orders/123">
