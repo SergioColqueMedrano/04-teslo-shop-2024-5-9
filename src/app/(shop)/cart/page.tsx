@@ -54,7 +54,7 @@ export default function CartPage() {
           }
           </div>
 
-          <div className="bg-white rounded-xl shadow-xl p-7">
+          <div className="absolute top-10 right-10 bg-white rounded-xl shadow-xl p-7 h-[300px]">
               <h2 className="text-2xl mb-2">Resumen de orden</h2>
               <div className="grid grid-cols-2">
                   <span>No. Productos</span>
