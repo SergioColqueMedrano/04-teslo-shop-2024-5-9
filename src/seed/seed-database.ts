@@ -23,6 +23,17 @@ async function main() {
         data: categoriesData
     });
 
+    // Productos
+
+    const categoriesDB = await prisma.category.findMany();
+
+    const categoriesMap = categoriesDB.reduce((map, category) =>{
+        map[ category.name.toLowerCase() ] = category.id;
+    
+        return map;
+    }, {} as Record<string, string>);
+
+    console.log(categoriesMap);
 
 
     console.log('Seed ejecutado correctamente')
