@@ -1,3 +1,5 @@
+
+
 import { Product } from '@/interfaces'
 import { ProductGridItem } from './ProductGridItem';
 
@@ -15,6 +17,7 @@ export const ProductGrid = ({ products }:Props) => {
              product={ product }
              />
             ))
+            
         }
     </div>
   )
