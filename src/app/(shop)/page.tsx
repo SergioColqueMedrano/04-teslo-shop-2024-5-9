@@ -1,5 +1,6 @@
 import { getPaginatedProductsWithImages } from "@/actions";
 import { ProductGrid, Title } from "@/components";
+import { redirect } from "next/navigation";
 
 interface Props {
   searchParams: {
@@ -15,7 +16,9 @@ export default async function Home({ searchParams }: Props) {
 
   const { products } = await getPaginatedProductsWithImages({ page });
   
-
+  if (products.length === 0) {
+    redirect('/');
+  }
 
   console.log(products)
 
