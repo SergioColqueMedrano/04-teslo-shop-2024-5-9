@@ -1,8 +1,9 @@
-import { ProductMobileSlideshow, ProductSlideshow, QuantitySelector, SizeSelector } from "@/components";
-import { titleFont } from "@/config/fonts";
-import { initialData } from "@/seed/seed";
-import { notFound } from "next/navigation";
+export const revalidate = 604800;
 
+import { getProductBySlug } from "@/actions";
+import { ProductMobileSlideshow, ProductSlideshow, QuantitySelector, SizeSelector, StockLabel } from "@/components";
+import { titleFont } from "@/config/fonts";
+import { notFound } from "next/navigation";
 
 interface Props {
   params: {
@@ -10,10 +11,10 @@ interface Props {
   }
 }
 
-export default function ProductPage({ params }: Props) {
+export default async function ProductPage({ params }: Props) {
   
   const { slug } = params;
-  const product = initialData.products.find( product => product.slug === slug );
+  const product = await getProductBySlug(slug);
   
   if ( !product ) {
     notFound();
@@ -39,6 +40,7 @@ export default function ProductPage({ params }: Props) {
       </div>
 
       <div className="col-span-1 px-5">
+          <StockLabel slug={ product.slug} />
           <h1 className={ ` ${ titleFont.className } antialiased font-bold text-xl` }>
             { product.title }
           </h1>
