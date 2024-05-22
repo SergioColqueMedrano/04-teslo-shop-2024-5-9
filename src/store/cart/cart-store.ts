@@ -6,6 +6,8 @@ import { persist } from "zustand/middleware";
 interface State {
     cart: CartProduct[];
 
+    getTotalItems: () => number;
+
     addProductTocart: (product: CartProduct) => void;
 
 
@@ -14,35 +16,47 @@ interface State {
 
 export const useCartStore = create<State>()(
 
-    //persist
+    persist(
+        (set, get) => ({
 
-    (set, get) => ({
+            cart: [],
 
-        cart: [],
-
-
-        addProductTocart: (product: CartProduct) =>{
-            const {cart} =get();
-
-            const productInCart = cart.some(
-                (item) => (item.id === product.id && item.size === product.size)
-            );
-
-            if (!productInCart){
-                set({ cart: [...cart,product ]});
-                return;
-            }
-
-
-            const updatedCartProducts = cart.map((item) => {
-                if(item.id === product.id && item.size === product.size){
-                    return { ...item, quantity: item.quantity + product.quantity}
+            getTotalItems: () => {
+                const { cart } = get();
+                return cart.reduce((total, item) => total + item.quantity, 0);
+            },
+    
+    
+            addProductTocart: (product: CartProduct) =>{
+                const {cart} =get();
+    
+                const productInCart = cart.some(
+                    (item) => (item.id === product.id && item.size === product.size)
+                );
+    
+                if (!productInCart){
+                    set({ cart: [...cart,product ]});
+                    return;
                 }
+    
+    
+                const updatedCartProducts = cart.map((item) => {
+                    if(item.id === product.id && item.size === product.size){
+                        return { ...item, quantity: item.quantity + product.quantity}
+                    }
+    
+                    return item;
+                });
 
-                return item;
-            })
+                set({ cart: updatedCartProducts });
+            }
+        }),
+
+        {
+            name: "shopping-cart",
         }
-    })
+    )
+       
 
 )
 
