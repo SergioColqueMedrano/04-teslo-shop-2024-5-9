@@ -12,7 +12,7 @@ export interface Product {
     gender: Category;
 }
 
-export interface CardProduct {
+export interface CartProduct {
     id: string;
     slug: string;
     title: string;
