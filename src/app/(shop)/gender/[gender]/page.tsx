@@ -24,8 +24,7 @@ export default async function gender({ params, searchParams }: Props) {
 
   const { products, currentPage, totalPages } = await getPaginatedProductsWithImages({ page, gender: gender as Gender, });
   
-  console.log( {currentPage, totalPages} )
-
+  
   if (products.length === 0) {
     redirect(`/gender/${ gender }`);
   }
