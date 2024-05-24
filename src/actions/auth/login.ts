@@ -3,6 +3,7 @@
 import { signIn } from '@/auth.config';
 import { sleep } from '@/utils';
 import { AuthError } from 'next-auth';
+import { redirect } from 'next/navigation';
  
 // ...
  
@@ -13,18 +14,20 @@ export async function authenticate(
   try {
 
 
-     await signIn('credentials', Object.fromEntries(formData));
-  
+     await signIn('credentials', {
+      ...Object.fromEntries(formData),
+      redirect: false,
+    });
+  return 'Success'
 
 } catch (error) {
-   // if (error instanceof AuthError) {
-     // switch (error.type) {
-       // case 'CredentialsSignin':
-          return 'CredentialsSingin'
-        //default:
-         // return 'Something went wrong.';
-    
-    
-    //throw error;
+
+    console.log(error);
+    //if((error as any).type === 'CredentialsSingin') {
+      return 'CredentialsSingin'
+  //}
+
+   // return 'UnknownError';
+       
   }
 }
