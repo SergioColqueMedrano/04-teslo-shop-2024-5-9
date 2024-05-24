@@ -1,9 +1,6 @@
 'use server'
 
 import { signIn } from '@/auth.config';
-import { sleep } from '@/utils';
-import { AuthError } from 'next-auth';
-import { redirect } from 'next/navigation';
  
 // ...
  
@@ -30,4 +27,32 @@ export async function authenticate(
    // return 'UnknownError';
        
   }
+}
+
+
+
+
+export const login = async(email:string, password: string) => {
+  try {
+
+
+    await signIn('credentials', {
+     email,
+     password
+   });
+ return {ok:true}
+
+} catch (error) {
+
+   console.log(error);
+   //if((error as any).type === 'CredentialsSingin') {
+     return {
+      ok:false,
+      message: 'No se pudo iniciar sesión'
+     }
+ //}
+
+  // return 'UnknownError';
+      
+ }
 }

@@ -1,6 +1,6 @@
 'use client'
 
-import { registerUser } from "@/actions";
+import { login, registerUser } from "@/actions";
 import clsx from "clsx";
 import Link from "next/link"
 import { useState } from "react";
@@ -15,6 +15,7 @@ type FormInputs = {
 
 export const RegisterForm = () => {
 
+
     const [errorMessage, setErrorMessage] = useState('')
     const {register, handleSubmit, formState: {errors} } = useForm<FormInputs>();
 
@@ -28,7 +29,8 @@ export const RegisterForm = () => {
             return;
         }
 
-        console.log({resp});
+        await login(email.toLowerCase(), password);
+        window.location.replace('/');
     }
 
     return (
