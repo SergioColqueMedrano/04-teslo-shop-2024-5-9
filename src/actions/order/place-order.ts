@@ -100,6 +100,7 @@ const productQuantity = item.quantity;
           subTotal: subTotal,
           tax: tax,
           total: total,
+          isPaid: false,
 
           OrderItem: {
             createMany: {
