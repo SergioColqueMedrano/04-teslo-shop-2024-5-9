@@ -42,7 +42,7 @@ export const placeOrder = async (
   const { subTotal, tax, total } = productIds.reduce(
     (totals, item) => {
       const productQuantity = item.quantity;
-      const product = products.find((product) => product.id === item.productId);
+      const product = products.find((p) => p.id === item.productId);
 
       if (!product) throw new Error(`${item.productId} no existe - 500`);
 
