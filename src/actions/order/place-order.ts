@@ -58,7 +58,7 @@ const productQuantity = item.quantity;
   );
 
   // Crear la transacción de base de datos
- {/*try {
+ try {
 
     const prismaTx = await prisma.$transaction(async (tx) => {
       // 1. Actualizar el stock de los productos
@@ -149,5 +149,5 @@ const productQuantity = item.quantity;
       ok: false,
       message: error?.message,
     };
-  } */}
+  } 
 };
