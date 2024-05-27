@@ -42,7 +42,7 @@ export const placeOrder = async (
   const { subTotal, tax, total } = productIds.reduce(
     (totals, item) => {
       const productQuantity = item.quantity;
-      const product = products.find((p) => p.id === item.productId);
+      const product = products.find((product) => product.id === item.productId);
 
       if (!product) throw new Error(`${item.productId} no existe - 500`);
 
@@ -53,12 +53,12 @@ export const placeOrder = async (
       totals.total += subTotal * 1.15;
 
       return totals;
-},
-   { subTotal: 0, tax: 0, total: 0 }
+    },
+    { subTotal: 0, tax: 0, total: 0 }
   );
 
   // Crear la transacción de base de datos
- try {
+ // try {
 
     const prismaTx = await prisma.$transaction(async (tx) => {
       // 1. Actualizar el stock de los productos
@@ -145,10 +145,10 @@ export const placeOrder = async (
     }
 
 
-  } catch (error: any) {
+ {/* } catch (error: any) {
     return {
       ok: false,
       message: error?.message,
-    };
-  } 
+    }; */}
+  
 };
