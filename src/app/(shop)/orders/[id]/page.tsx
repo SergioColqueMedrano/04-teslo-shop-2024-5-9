@@ -1,5 +1,6 @@
 import { redirect } from "next/navigation";
 import Image from "next/image";
+import PaymentForm from '@/components/SendMessageForm';
 
 import { getOrderById } from "@/actions/order/get-order-by-id";
 import { currencyFormat } from "@/utils";
@@ -156,7 +157,10 @@ export default async function OrdersByIdPage({ params }: Props) {
               </span>
 
             </div>
-
+            <div>
+            <h1>Send a WhatsApp Message</h1>
+            <PaymentForm/>
+            </div>
           
         </div>
       </div>
