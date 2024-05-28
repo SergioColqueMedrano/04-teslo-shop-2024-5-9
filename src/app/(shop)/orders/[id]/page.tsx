@@ -3,7 +3,16 @@ import Image from "next/image";
 
 import { getOrderById } from "@/actions/order/get-order-by-id";
 import { currencyFormat } from "@/utils";
-import { OrderStatus, PayPalButton, Title } from "@/components";
+import { Title } from "@/components";
+import clsx from "clsx";
+import { IoCartOutline } from "react-icons/io5";
+import { initialData } from "@/seed/seed";
+
+const productsInCart = [
+  initialData.products[0],
+  initialData.products[1],
+  initialData.products[2],
+];
 
 interface Props {
   params: {
@@ -22,20 +31,42 @@ export default async function OrdersByIdPage({ params }: Props) {
     redirect("/");
   }
 
+  console.log(JSON.stringify(order));
+
   const address = order!.OrderAddress;
 
   return (
     <div className="flex justify-center items-center mb-72 px-10 sm:px-0">
+
       <div className="flex flex-col w-[1000px]">
+
         <Title title={`Orden #${id.split("-").at(-1)}`} />
 
         <div className="grid grid-cols-1 sm:grid-cols-2 gap-10">
           {/* Carrito */}
           <div className="flex flex-col mt-5">
-            <OrderStatus isPaid={order?.isPaid ?? false} />
+            
 
+            <div className={
+              clsx(
+                "flex items-center rounded-lg py-2 px-3.5 text-xs font-bold text-white mb-5",
+                {
+                  "bg-red-500": !order!.isPaid,
+                  'bg-green-700': order!.isPaid,
+                }
+              )
+            }>
+              <IoCartOutline size={30} />
+
+              <span className="mx-2">
+                {order?.isPaid ? "Pagado" : "Pendiente"}
+              </span>
+
+            </div>
+            
+            
             {/* Items */}
-            {order!.OrderItem.map((item) => (
+            {order!.OrderItem.map( item => (
               <div
                 key={item.product.slug + "-" + item.size}
                 className="flex mb-5"
@@ -109,15 +140,28 @@ export default async function OrdersByIdPage({ params }: Props) {
             </div>
 
             <div className="mt-5 mb-2 w-full">
-              {order?.isPaid ? (
-                <OrderStatus isPaid={order?.isPaid ?? false} />
-              ) : (
-                <PayPalButton amount={order!.total} orderId={order!.id} />
-              )}
+            <div className={
+              clsx(
+                "flex items-center rounded-lg py-2 px-3.5 text-xs font-bold text-white mb-5",
+                {
+                  "bg-red-500": !order!.isPaid,
+                  'bg-green-700': order!.isPaid,
+                }
+              )
+            }>
+              <IoCartOutline size={30} />
+
+              <span className="mx-2">
+                {order?.isPaid ? "Pagado" : "Pendiente"}
+              </span>
+
             </div>
-          </div>
+
+          
         </div>
       </div>
+    </div>
+    </div>
     </div>
   );
 }

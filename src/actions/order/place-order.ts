@@ -15,10 +15,10 @@ export const placeOrder = async (
   address: Address
 ) => {
   const session = await auth();
-  const userId = session?.user.id;
+  const userId1 = session?.user.id;
 
   // Verificar sesión de usuario
-  if (!userId) {
+  if (!userId1) {
     return {
       ok: false,
       message: "No hay sesión de usuario",
@@ -94,7 +94,7 @@ export const placeOrder = async (
       // 2. Crear la orden - Encabezado - Detalles
       const order = await tx.order.create({
         data: {
-          userId: userId,
+          userId: userId1,
           itemsInOrder: itemsInOrder,
           subTotal: subTotal,
           tax: tax,
