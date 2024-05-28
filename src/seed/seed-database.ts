@@ -16,6 +16,7 @@ async function main() {
         prisma.orderItem.deleteMany(),
         prisma.order.deleteMany(),
 
+        prisma.userAddress.deleteMany(),
         prisma.user.deleteMany(),
         prisma.country.deleteMany(),
         prisma.productImage.deleteMany(),

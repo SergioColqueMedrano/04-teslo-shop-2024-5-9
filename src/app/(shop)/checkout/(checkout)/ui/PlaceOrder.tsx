@@ -16,7 +16,7 @@ export const PlaceOrder = () => {
   const [errorMessage, setErrorMessage] = useState(''); 
   const [isPlacingOrder, setIsPlacingOrder] = useState(false);  
 
-  const address = useAddressStore( state => state.address );
+  const address = useAddressStore( (state) => state.address );
   
   const { itemsInCart, subTotal, tax, total} = useCartStore( state => state.getSummaryInformation());
 
@@ -37,12 +37,12 @@ export const PlaceOrder = () => {
         quantity: product.quantity,
         size: product.size,
     }))
-    console.log({ address, productsToOrder });
+    
     //await sleep(2);
     const resp = await placeOrder(productsToOrder, address);
     if (!resp.ok){
       setIsPlacingOrder(false);
-      //setErrorMessage(resp.message);
+      setErrorMessage(resp.message);
       return;
     }
     

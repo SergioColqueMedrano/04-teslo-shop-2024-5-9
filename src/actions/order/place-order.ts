@@ -58,8 +58,7 @@ export const placeOrder = async (
   );
 
   // Crear la transacción de base de datos
- // try {
-
+  try {
     const prismaTx = await prisma.$transaction(async (tx) => {
       // 1. Actualizar el stock de los productos
       const updatedProductsPromises = products.map((product) => {
@@ -100,7 +99,6 @@ export const placeOrder = async (
           subTotal: subTotal,
           tax: tax,
           total: total,
-          isPaid: false,
 
           OrderItem: {
             createMany: {
@@ -121,7 +119,8 @@ export const placeOrder = async (
 
       // 3. Crear la direccion de la orden
       // Address
-      const { country, ...restAddress } = address;
+      const { country, userId, ...restAddress } = address;
+      
       const orderAddress = await tx.orderAddress.create({
         data: {
           ...restAddress,
@@ -130,6 +129,8 @@ export const placeOrder = async (
         },
       });
 
+      
+
       return {
         updatedProducts: updatedProducts,
         order: order,
@@ -137,18 +138,15 @@ export const placeOrder = async (
       };
     });
 
-
     return {
       ok: true,
       order: prismaTx.order,
       prismaTx: prismaTx,
-    }
-
-
- {/* } catch (error: any) {
+    };
+  } catch (error: any) {
     return {
       ok: false,
       message: error?.message,
-    }; */}
-  
+    };
+  }
 };
