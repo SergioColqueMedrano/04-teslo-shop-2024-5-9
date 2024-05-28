@@ -15,11 +15,11 @@ export const Pagination = ({ totalPages }: Props) => {
   const pathname = usePathname();
   const searchParams = useSearchParams();
   
-  const pageString = searchParams.get('page') ?? 1;
+  const pageString = searchParams?.get('page') ?? 1;
   let currentPage = isNaN(+pageString) ? 1: +pageString;
 
   if (currentPage < 1 || isNaN(+pageString)){
-    redirect(pathname);
+    redirect(pathname || '/default-path');
   }
 
   const allPages = generatePaginationNumbers(currentPage, totalPages);
@@ -28,7 +28,7 @@ export const Pagination = ({ totalPages }: Props) => {
   
   const createPageUrl = ( pageNumber: number | string) =>{
 
-    const params = new URLSearchParams( searchParams );
+    const params = new URLSearchParams( searchParams || undefined );
 
     if (pageNumber === '...') {
       return `${ pathname }?${ params.toString() }`;
