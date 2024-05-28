@@ -135,6 +135,7 @@ model OrderAddress {
   postalCode String
   city       String
   phone      String
+  userId     String
   // Relaciones
   country   Country @relation(fields: [countryId], references: [id])
   countryId String

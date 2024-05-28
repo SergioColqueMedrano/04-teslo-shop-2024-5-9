@@ -24,14 +24,14 @@ export default async function OrdersByIdPage({ params }: Props) {
   const { id } = params;
 
   // Todo: Llamar el server action
-
+  
   const { ok, order } = await getOrderById(id);
 
   if (!ok) {
     redirect("/");
   }
 
-  console.log(JSON.stringify(order));
+  console.log(order);
 
   const address = order!.OrderAddress;
 
