@@ -23,7 +23,7 @@ export default async function AddressPage() {
         
         <Title title="Dirección" subtitle="Dirección de entrega" />
 
-        <AddressForm countries={countries} userStoredAddress={ userAddress} />
+        <AddressForm countries={countries} userStoredAddress={userAddress || undefined} />
 
       </div>
 
