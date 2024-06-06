@@ -5,6 +5,7 @@ import { logout } from "@/actions";
 import { useUIStore } from "@/store";
 import clsx from "clsx";
 import { useSession } from "next-auth/react";
+import { revalidatePath } from "next/cache";
 import Link from "next/link";
 import { IoCloseOutline, IoSearchOutline, IoPersonOutline, IoTicketOutline, IoLogInOutline, IoLogOutOutline, IoShirtOutline, IoPeopleOutline } from "react-icons/io5"
 
@@ -91,7 +92,7 @@ export const Sidebar = () => {
                     <Link
                         href="/"
                     className="flex w-full items-center mt-10 p-2 hover:bg-gray-100 rounded transition-all"
-                    onClick={() => {logout();closeMenu();window.location.reload()}}
+                    onClick={() => {logout();closeMenu();window.location.reload();revalidatePath('/');}}
                     
                     >
                         <IoLogOutOutline size={ 30 } />
@@ -127,14 +128,16 @@ export const Sidebar = () => {
                          <span className="ml-3 text-xl">Productos</span>
                         </Link> 
                         <Link
-                            href="/"
+                            href="/admin/orders"
+                            onClick={() => closeMenu()}
                             className="flex items-center mt-10 p-2 hover:bg-gray-100 rounded transition-all"
                         >
                             <IoTicketOutline size={ 30 } />
                             <span className="ml-3 text-xl">Ordenes</span>
                         </Link>
                         <Link
-                            href="/"
+                            href="/admin/users"
+                            onClick={() => closeMenu()}
                               className="flex items-center mt-10 p-2 hover:bg-gray-100 rounded transition-all"
                         >
                              <IoPeopleOutline size={ 30 } />
