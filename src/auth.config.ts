@@ -15,7 +15,7 @@ export const authConfig: NextAuthConfig = {
     callbacks: {
 
         authorized({ auth, request: { nextUrl } }) {
-            console.log({auth})
+            //console.log({auth})
             
             return true;
         },
@@ -52,7 +52,7 @@ export const authConfig: NextAuthConfig = {
                 if(!bcryptjs.compareSync( password, user.password)) return null;
                 
                 const { password: _, ...rest } = user;
-                console.log({rest});
+                //console.log({rest});
                 return rest;
             },
           }),

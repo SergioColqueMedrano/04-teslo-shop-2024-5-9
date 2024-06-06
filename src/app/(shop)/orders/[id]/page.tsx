@@ -32,7 +32,7 @@ export default async function OrdersByIdPage({ params }: Props) {
     redirect("/");
   }
 
-  console.log(order);
+  //console.log(order);
 
   const address = order!.OrderAddress;
 
@@ -69,22 +69,7 @@ export default async function OrdersByIdPage({ params }: Props) {
           <div className="flex flex-col mt-5">
             
 
-            <div className={
-              clsx(
-                "flex items-center rounded-lg py-2 px-3.5 text-xs font-bold text-white mb-5",
-                {
-                  "bg-red-500": !order!.isPaid,
-                  'bg-green-700': order!.isPaid,
-                }
-              )
-            }>
-              <IoCartOutline size={30} />
-
-              <span className="mx-2">
-                {order?.isPaid ? "Pagado" : "Pendiente"}
-              </span>
-
-            </div>
+            
             
             
             {/* Items */}
@@ -164,7 +149,7 @@ export default async function OrdersByIdPage({ params }: Props) {
             <div className="mt-5 mb-2 w-full">
             
             <div>
-            <MercadoPagoButton title="Producto Ejemplo" unit_price={1} quantity={order!.total}/>
+            <MercadoPagoButton title="Producto Modas Evelyn" unit_price={1} quantity={order!.total}/>
             </div>
 
             
