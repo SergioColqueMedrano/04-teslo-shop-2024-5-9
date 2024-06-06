@@ -9,8 +9,8 @@ import { Provider } from "@/components";
 
 export const metadata: Metadata = {
   title: {
-    template: '%s - Teslo | Shop',
-    default: 'Home - Teslo | Shop'
+    template: '%s - Modas Evelyn By Chelis | Shop',
+    default: 'Home - Modas Evelyn By Chelis | Shop'
   },
   description: "Una tienda virtual de productos",
 };

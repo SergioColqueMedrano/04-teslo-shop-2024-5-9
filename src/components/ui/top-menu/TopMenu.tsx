@@ -27,7 +27,7 @@ export const TopMenu = () => {
     <nav className="flex px-5 justify-between items-center w-full">
         <div>
             <Link href="/">
-                <span className={ `${ titleFont.className } antialiased font-bold`}>Teslo</span>
+                <span className={ `${ titleFont.className } antialiased font-bold`}>Modas Evelyn By Chelis</span>
                 <span> | Shop</span>
             </Link>
         </div>

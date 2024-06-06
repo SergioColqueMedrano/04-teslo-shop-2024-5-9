@@ -88,14 +88,15 @@ export const Sidebar = () => {
 
             {
                 isAutheticated && (
-                    <button
+                    <Link
+                        href="/"
                     className="flex w-full items-center mt-10 p-2 hover:bg-gray-100 rounded transition-all"
-                    onClick={() => logout()}
+                    onClick={() => {logout();closeMenu();window.location.reload()}}
                     
                     >
                         <IoLogOutOutline size={ 30 } />
                         <span className="ml-3 text-xl">Salir</span>
-                    </button>
+                    </Link>
                 )
             }
 

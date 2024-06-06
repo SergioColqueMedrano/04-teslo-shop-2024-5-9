@@ -30,7 +30,7 @@ const MercadoPagoButton = ({ title, unit_price, quantity }: MercadoPagoButtonPro
   return (
     <>
       <Script src="https://sdk.mercadopago.com/js/v2"></Script>
-      <button onClick={handlePayment} className="bg-blue-500 text-white px-4 py-2 rounded">
+      <button onClick={handlePayment} className="bg-blue-500 hover:bg-blue-400 text-white font-bold py-2 px-4 rounded">
         Pagar con MercadoPago
       </button>
     </>
