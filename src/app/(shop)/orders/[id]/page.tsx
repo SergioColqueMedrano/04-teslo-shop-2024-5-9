@@ -9,6 +9,17 @@ import clsx from "clsx";
 import { IoCartOutline } from "react-icons/io5";
 import { initialData } from "@/seed/seed";
 
+
+import { initMercadoPago, Wallet } from '@mercadopago/sdk-react';
+import axios from "axios";
+import { useState } from "react";
+import MercadoPagoButton from "@/components/MercadoPagoButton/MercadoPagoButton";
+
+
+<Wallet initialization={{ preferenceId: '<PREFERENCE_ID>' }} customization={{ texts:{ valueProp: 'smart_option'}}} />
+
+
+
 const productsInCart = [
   initialData.products[0],
   initialData.products[1],
@@ -22,6 +33,8 @@ interface Props {
 }
 
 export default async function OrdersByIdPage({ params }: Props) {
+  //const [preferenceId, setPreferenceId] = useState(null)
+  //initMercadoPago('YOUR_PUBLIC_KEY',{locale: "es-AR",});
   const { id } = params;
 
   // Todo: Llamar el server action
@@ -36,6 +49,27 @@ export default async function OrdersByIdPage({ params }: Props) {
 
   const address = order!.OrderAddress;
 
+ {/*  const createPreference = async () => {
+    try {
+      const response = await axios.post("http://localhost:3000/create_preference",{
+        title: "Tu compra",
+        quantity: 1,
+        price: order!.total,
+      });
+      const {id} = response.data;
+      return id;
+    } catch (error) {
+      console.log(error)
+    }
+  };
+
+  const handleBuy = async () => {
+    const id = await createPreference();
+    if (id) {
+      setPreferenceId(id);
+    }
+  }
+*/}
   return (
     <div className="flex justify-center items-center mb-72 px-10 sm:px-0">
 
@@ -158,10 +192,11 @@ export default async function OrdersByIdPage({ params }: Props) {
 
             </div>
             <div>
-            <h1>Send a WhatsApp Message</h1>
-            <PaymentForm/>
+            <MercadoPagoButton title="Producto Ejemplo" unit_price={1} quantity={order!.total}/>
             </div>
-          
+
+            
+            
         </div>
       </div>
     </div>
