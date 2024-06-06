@@ -27,7 +27,7 @@ const createOrReplaceAddress = async (address: Address, userId: string) => {
 
     console.log({ userId });
 
-    const storedAddress = await prisma.userAddress.findUnique({
+    const storedAddress = await prisma.userAddress.findFirst ({
       where: { userId },
     });
 
