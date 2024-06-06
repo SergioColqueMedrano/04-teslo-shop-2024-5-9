@@ -4,18 +4,16 @@ import { initialData } from "./seed";
 import { countries } from "./seed-countries";
 
 
-interface Abc {
-    asd:String
-}
+
 
 async function main() {
 
     // 1 Borrar registros previos
     await Promise.all([
-        
+         
+        prisma.order.deleteMany(),   
         prisma.orderItem.deleteMany(),
-        prisma.orderAddress.deleteMany(),
-        prisma.order.deleteMany(),
+        prisma.orderAddress.deleteMany(),    
 
         prisma.userAddress.deleteMany(),
         prisma.user.deleteMany(),
