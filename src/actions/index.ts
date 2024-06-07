@@ -25,3 +25,5 @@ export * from './user/get-paginater-users'
 export * from './user/change-user-role'
 
 export * from './category/get-categories'
+
+export * from './product/create-update-product'

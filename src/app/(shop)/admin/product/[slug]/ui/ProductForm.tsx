@@ -1,9 +1,11 @@
 "use client";
 
+import { createUpdateProduct } from "@/actions";
 import { Category, Product, ProductImage } from "@/interfaces";
 import clsx from "clsx";
 import Image from "next/image";
 import { useForm } from "react-hook-form";
+import { object } from "zod";
 
 interface Props {
   product: Product & { ProductImage?: ProductImage[]};
@@ -54,7 +56,26 @@ export const ProductForm = ({ product, categories }: Props) => {
     }
 
     const onSubmit = async(data: FormInputs) => {
-        console.log({data});
+        //console.log({data});
+      const formData = new FormData();
+
+      const { ...productToSave } = data;
+
+      formData.append('id', product.id ?? '');
+      formData.append('title', productToSave.title);      
+      formData.append('slug', productToSave.slug);      
+      formData.append('description', productToSave.description);      
+      formData.append('price', productToSave.price.toString() );
+      formData.append('inStock', productToSave.inStock.toString() );
+      formData.append('sizes', productToSave.sizes.toString() );
+      formData.append('tags', productToSave.tags );
+      formData.append('categoryId', productToSave.categoryId );
+      formData.append('gender', productToSave.gender );
+      
+       
+      const {ok} = await createUpdateProduct(formData);
+
+      console.log(object);
     }
 
   return (
