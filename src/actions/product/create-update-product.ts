@@ -3,7 +3,7 @@
 import prisma from "@/lib/prisma";
 import { Gender, Product, Size } from "@prisma/client"
 import { revalidatePath } from "next/cache";
-
+import {v2 as cloudinary} from 'cloudinary';
 import { z } from 'zod';
 
 const productSchema = z.object({
@@ -77,7 +77,7 @@ export const createUpdateProduct = async( formData: FormData ) => {
     }
 
     if (formData.getAll('images')) {
-        console.log(formData.getAll('images'));
+        const images = console.log(formData.getAll('images') as File[]);
     }
 
     return {
@@ -104,4 +104,8 @@ export const createUpdateProduct = async( formData: FormData ) => {
         }
     }
     
+}
+
+const uploadImages = async(files: File[]) => {
+
 }
