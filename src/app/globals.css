@@ -5,8 +5,8 @@
 :root {
   --primary: #274494;
   --foreground-rgb: 0, 0, 0;
-  --background-start-rgb: 214, 219, 220;
-  --background-end-rgb: 255, 255, 255;
+  --background-start-rgb: 231, 142, 165;
+  --background-end-rgb: 228, 174, 187;
 }
 /* 
 @media (prefers-color-scheme: dark) {
